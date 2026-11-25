@@ -63,7 +63,7 @@ class StreamClient(threading.Thread):
         self._provider = endpoint_provider
         self._opt = options
         self._latest = latest
-        self._stop = stop
+        self._stop_event = stop
         self._decoder = H264Decoder()
         self._rotation = 0
         self.connected = threading.Event()
@@ -71,20 +71,20 @@ class StreamClient(threading.Thread):
 
     # ------------------------------------------------------------------ loop
     def run(self) -> None:
-        while not self._stop.is_set():
+        while not self._stop_event.is_set():
             endpoint = self._provider()
             if endpoint is None:
                 log.info("celular não encontrado; tentando de novo em %.0fs", self._opt.reconnect_delay)
-                self._stop.wait(self._opt.reconnect_delay)
+                self._stop_event.wait(self._opt.reconnect_delay)
                 continue
             try:
                 self._session(endpoint)
             except (OSError, EOFError, ProtocolError) as exc:
-                if not self._stop.is_set():
+                if not self._stop_event.is_set():
                     log.warning("conexão com %s:%d caiu: %s", endpoint.host, endpoint.port, exc)
             finally:
                 self.connected.clear()
-            self._stop.wait(self._opt.reconnect_delay)
+            self._stop_event.wait(self._opt.reconnect_delay)
 
     def _session(self, ep: Endpoint) -> None:
         log.info("conectando em %s (%s:%d)...", ep.name, ep.host, ep.port)
@@ -98,7 +98,7 @@ class StreamClient(threading.Thread):
             log.info("conectado")
 
             stats_t, stats_n = time.monotonic(), 0
-            while not self._stop.is_set():
+            while not self._stop_event.is_set():
                 packet = read_packet(stream)
                 if isinstance(packet, Config):
                     self._on_config(packet)
