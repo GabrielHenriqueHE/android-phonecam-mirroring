@@ -13,3 +13,7 @@ android/.idea/
 *.iml
 *.apk
 *.keystore
+
+# Editores / ferramentas
+.idea/
+.claude/worktrees/
