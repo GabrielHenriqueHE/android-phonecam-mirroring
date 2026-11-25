@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PhoneCam</string>
+    <string name="waiting">Aguardando o PC conectar…</string>
+    <string name="no_wifi">Sem Wi-Fi</string>
+    <string name="switch_camera">Trocar câmera</string>
+    <string name="dim_screen">Escurecer tela</string>
+    <string name="restore_screen">Restaurar brilho</string>
+    <string name="camera_denied">Permissão de câmera negada. Libere em Configurações &gt; Apps &gt; PhoneCam.</string>
+    <string name="hint">No PC: <b>phonecam</b> (acha o celular sozinho) ou <b>phonecam --host IP</b>.\n\nNão bloqueie a tela: o Android desliga a câmera. Use \"Escurecer tela\" para poupar bateria.</string>
+</resources>
