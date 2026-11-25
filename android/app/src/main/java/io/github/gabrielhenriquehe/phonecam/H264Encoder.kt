@@ -1,4 +1,4 @@
-package io.github.gabrielpsmartins.phonecam
+package io.github.gabrielhenriquehe.phonecam
 
 import android.media.MediaCodec
 import android.media.MediaCodecInfo

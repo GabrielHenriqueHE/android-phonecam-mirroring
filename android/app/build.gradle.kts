@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "io.github.gabrielpsmartins.phonecam"
+    namespace = "io.github.gabrielhenriquehe.phonecam"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "io.github.gabrielpsmartins.phonecam"
+        applicationId = "io.github.gabrielhenriquehe.phonecam"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
